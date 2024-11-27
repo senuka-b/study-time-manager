@@ -516,7 +516,7 @@ function loadAllTasks() {
     console.log("SORTED", sorted);
     
 
-    allTaskBody.innerHTML += "<ol>"
+    allTaskBody.innerHTML += ""
     sorted.forEach(task => {
         allTaskBody.innerHTML += `
             
@@ -539,7 +539,7 @@ function loadAllTasks() {
         `;
     })
 
-    allTaskBody.innerHTML += "</ol>";
+
 
     let taskTimeBody = document.getElementById("taskTimeBody");
 
