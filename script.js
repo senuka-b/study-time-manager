@@ -6,8 +6,34 @@ let time = [];
 let ch;
 let th;
 
-loadChart();
-loadTimeChart();
+tasks = [
+    {task: "Task 01", subject: "Maths", priority: "Medium"},
+    {task: "Task 02", subject: "Science", priority: "Very High"},
+    {task: "Task 03", subject: "English", priority: "High"},
+]
+
+subjects = [
+    {subject: "Science"},
+    {subject: "Maths"},
+    {subject: "English"},
+]
+
+time = [
+    {task: "Task 01", duration: "12:01"},
+    {task: "Task 02", duration: "9:32"},
+    {task: "Task 03", duration: "2:32"},
+]
+
+
+
+loadAll();
+
+function loadAll() {
+    loadAllTasks();
+    loadSubjects();
+    loadChart();
+    loadTimeChart();
+}
 
 function loadTimeChart() {
     let ctx = document.getElementById("timeChart");
@@ -19,7 +45,7 @@ function loadTimeChart() {
         type: 'line',
         
         data: {
-          labels: time.map(t => t.task),
+          labels: subjects.map(sub => sub.subject),
           datasets: [{
             label: 'Time spent on subjects',
             data: time.map(t =>{ 
@@ -172,6 +198,7 @@ function removeTask(task) {
 
     document.getElementById("addTaskBody").innerHTML = taskHTMl;
     loadAllTasks();
+    loadChart();
 }
 
 function removeSubject(subject) {
@@ -190,6 +217,7 @@ function removeSubject(subject) {
     });
     document.getElementById("addSubjectBody").innerHTML = subjectHTML;
     loadSubjects();
+    loadTimeChart();
 
 }
 
@@ -236,6 +264,7 @@ function changeSubject(subject) {
 
 function loadSubjects() {
     let subjectMenu = document.getElementById("addTaskSubjectMenu");
+    let addSubjectBody = document.getElementById("addSubjectBody");
     
     subjectMenu.innerHTML = "";
     subjects.forEach(subject => {
@@ -243,10 +272,24 @@ function loadSubjects() {
             <li><a class="dropdown-item" onclick="changeSubject('${subject.subject}')" >${subject.subject}</a></li>
         `;
     })
+
+    let subjectHTML = "";
+    subjects.forEach(subject => {
+        subjectHTML += `
+            <div class="row ps-5 ms-5">
+                    <div class="col">${subject.subject}</div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeSubject('${subject.subject}')"><span class="bi bi-x"></span></button>
+                    </div>
+            </div>
+        `
+    });
+    addSubjectBody.innerHTML = subjectHTML;
 }
 
 function loadTasks() {
     let taskList = document.getElementById("taskList");
+    let addTaskBody = document.getElementById("addTaskBody");
 
     taskList.innerHTML = "";
     tasks.forEach(task => {
@@ -266,6 +309,23 @@ function loadTasks() {
         
         `;
     })
+
+    let taskHTMl = "";
+    tasks.forEach(task => {
+        taskHTMl += `
+            <div class="row">
+                <div class="col">${task.task}</div>
+                <div class="col">${task.subject}</div>
+                <div class="col">${task.priority}</div>
+                <div class="col">
+                    <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${task.task}')"><span class="bi bi-x"></span></button>
+                </div>
+            </div>    
+        
+    `
+    })
+
+    addTaskBody.innerHTML = taskHTMl;
 
 }
 
