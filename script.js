@@ -30,7 +30,7 @@ function addTask() {
                 <div class="col">${task.subject}</div>
                 <div class="col">${task.priority}</div>
                 <div class="col">
-                    <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${task}')"><span class="bi bi-x"></span></button>
+                    <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${task.task}')"><span class="bi bi-x"></span></button>
                 </div>
             </div>    
         
@@ -42,6 +42,49 @@ function addTask() {
     console.log(tasks);
     loadAllTasks();
     
+
+}
+
+function removeTask(task) {
+    console.log(task);
+    
+    tasks = tasks.filter((t) => t.task != task);
+    
+    let taskHTMl = "";
+    tasks.forEach(task => {
+        taskHTMl += `
+            <div class="row">
+                <div class="col">${task.task}</div>
+                <div class="col">${task.subject}</div>
+                <div class="col">${task.priority}</div>
+                <div class="col">
+                    <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${task.task}')"><span class="bi bi-x"></span></button>
+                </div>
+            </div>    
+        
+    `
+    })
+
+    document.getElementById("addTaskBody").innerHTML = taskHTMl;
+    loadAllTasks();
+}
+
+function removeSubject(subject) {
+    subjects = subjects.filter((s) => s.subject != subject);
+
+    let subjectHTML = "";
+    subjects.forEach(subject => {
+        subjectHTML += `
+            <div class="row ps-5 ms-5">
+                    <div class="col">${subject.subject}</div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeSubject('${subject.subject}')"><span class="bi bi-x"></span></button>
+                    </div>
+            </div>
+        `
+    });
+    document.getElementById("addSubjectBody").innerHTML = subjectHTML;
+    loadSubjects();
 
 }
 
@@ -111,7 +154,7 @@ function loadAllTasks() {
     sorted.forEach(task => {
         allTaskBody.innerHTML += `
             
-            <li>${task.task} - (${task.priority})</li>    
+            <li>${task.task} - (${task.priority}) <span class="btn ms-3 btn-success" onclick="removeTask('${task.task}')">Mark as Done<span class="bi bi-check"></span></span></li>    
             
         `;
     });
