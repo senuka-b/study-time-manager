@@ -4,8 +4,45 @@ let subjects = [];
 let time = [];
 
 let ch;
+let th;
 
 loadChart();
+loadTimeChart();
+
+function loadTimeChart() {
+    let ctx = document.getElementById("timeChart");
+
+    if (th !== undefined) th.destroy();
+
+
+    th = new Chart(ctx, {
+        type: 'line',
+        
+        data: {
+          labels: time.map(t => t.task),
+          datasets: [{
+            label: 'Time spent on subjects',
+            data: time.map(t =>{ 
+                console.log(parseFloat(t.duration.split(":")[0]));
+                
+                return parseFloat(t.duration.split(":")[0])}),
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+          }],
+          
+        },
+       
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+
+            }
+          }
+        }
+      });
+}
 
 function loadChart() {
     let ctx = document.getElementById("insightChart");
@@ -68,7 +105,6 @@ function loadChart() {
           }
         }
       });
-    ch.ref
 }
 
 function addTask() {
@@ -117,6 +153,7 @@ function removeTask(task) {
     console.log(task);
     
     tasks = tasks.filter((t) => t.task != task);
+    time = time.filter((t) => t.task != task);
     
     let taskHTMl = "";
     tasks.forEach(task => {
@@ -265,6 +302,8 @@ function addTime() {
         `;
     })
 
+    loadTimeChart();
+
     
 }
 
@@ -295,6 +334,8 @@ function selectTask(task) {
 function loadAllTasks() {
     loadChart();
     loadTasks();
+    loadTimeChart();
+    
 
     let allTaskBody = document.getElementById("allTaskBody");
     allTaskBody.innerHTML = "";
@@ -323,7 +364,7 @@ function loadAllTasks() {
             <div class="col">${t.task}</div>
             <div class="col">${t.duration}</div>
             <div class="col">
-                <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${t.task}')"><span class="bi bi-x"></span></button>
+                <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTime('${t.task}')"><span class="bi bi-x"></span></button>
             </div>
                                             
         </div>
