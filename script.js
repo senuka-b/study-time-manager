@@ -40,7 +40,6 @@ function loadTimeChart() {
 
     if (th !== undefined) th.destroy();
 
-
     th = new Chart(ctx, {
         type: 'line',
         
@@ -391,14 +390,42 @@ function selectTask(task) {
     selectTask.innerText = task;
 }
 
+function loadTaskCalendar() {
+    let calendar = document.getElementById("taskCalendar");
+
+    calendar.innerHTML = `
+        <th>
+            <td>Duration</td>
+            <td>Task</td>
+            <td>Priority</td>
+        </th>
+    
+    `;
+    tasks.forEach((t, index) => {
+        calendar.innerHTML += `
+            <tr>
+                <td></td>
+                <td>${time[index].duration}</td>
+                <td>${t.task}</td>
+                <td>${t.priority}</td>
+            </tr>
+        `
+    })
+
+}
+
 function loadAllTasks() {
     loadChart();
     loadTasks();
     loadTimeChart();
+    loadTaskCalendar();
     
 
     let allTaskBody = document.getElementById("allTaskBody");
+    let timeSortedBody = document.getElementById("tasksTimeSort");
+
     allTaskBody.innerHTML = "";
+    timeSortedBody.innerHTML = "";
 
     let sorted = tasks.sort((a, b) => getPriorityValue(b.priority) - getPriorityValue(a.priority));
     
@@ -413,6 +440,21 @@ function loadAllTasks() {
             
         `;
     });
+
+    let time_sorted = time.sort((a, b) => {
+        let a_value = parseFloat(a.duration.split(":")[0] * 60 + parseFloat(a.duration.split(":")[1]));
+        let b_value = parseFloat(b.duration.split(":")[0] * 60 + parseFloat(b.duration.split(":")[1]));
+
+        return a_value - b_value;
+    });
+
+    time_sorted.forEach(t => {
+        timeSortedBody.innerHTML += `
+            <li>${t.task} - (${t.duration}) <span class="btn ms-3 btn-success" onclick="removeTask('${t.task}')">Mark as Done<span class="bi bi-check"></span></span></li>    
+
+        `;
+    })
+
     allTaskBody.innerHTML += "</ol>";
 
     let taskTimeBody = document.getElementById("taskTimeBody");
