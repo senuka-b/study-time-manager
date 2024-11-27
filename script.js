@@ -5,6 +5,7 @@ let time = [];
 
 let ch;
 
+loadChart();
 
 function loadChart() {
     let ctx = document.getElementById("insightChart");
@@ -207,8 +208,93 @@ function loadSubjects() {
     })
 }
 
+function loadTasks() {
+    let taskList = document.getElementById("taskList");
+
+    taskList.innerHTML = "";
+    tasks.forEach(task => {
+        taskList.innerHTML += `<li><a class="dropdown-item" onclick=selectTask('${task.task}')>${task.task}</a></li>` 
+    })
+
+    let taskTimeBody = document.getElementById("taskTimeBody");
+
+    taskTimeBody.innerHTML = "";
+    time.forEach(t => {
+        taskTimeBody.innerHTML += `
+            <div class="col">${t.task}</div>
+            <div class="col">${t.duration}</div>
+            <div class="col">
+                <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${t.task}')"><span class="bi bi-x"></span></button>
+            </div>
+        
+        `;
+    })
+
+}
+
+function addTime() {
+    let timeStart = document.getElementById('timeStart');
+    let timeEnd = document.getElementById('timeEnd');
+
+    let task = document.getElementById("selectTask");
+    let taskTimeBody = document.getElementById("taskTimeBody");
+
+    if (time.find(t => t.task == task.innerText)) {
+        return alert("Sorry! You have already allocated a time for this task.")
+    }
+
+    time.push(
+        {
+            "task": task.innerText,
+            "duration": diff(timeStart.value, timeEnd.value)
+        }
+    );
+
+    taskTimeBody.innerHTML = "";
+    time.forEach(t => {
+        taskTimeBody.innerHTML += `
+        <div class="row d-flex text-center justify-content-center align-items-center">
+            <div class="col">${t.task}</div>
+            <div class="col">${t.duration}</div>
+            <div class="col">
+                <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${t.task}')"><span class="bi bi-x"></span></button>
+            </div>
+                                            
+        </div>
+        
+        `;
+    })
+
+    
+}
+
+function diff(start, end) {
+    start = start.split(":");
+    end = end.split(":");
+    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+    var diff = endDate.getTime() - startDate.getTime();
+    var hours = Math.floor(diff / 1000 / 60 / 60);
+    diff -= hours * 1000 * 60 * 60;
+    var minutes = Math.floor(diff / 1000 / 60);
+
+    // If using time pickers with 24 hours format, add the below line get exact hours
+    if (hours < 0)
+       hours = hours + 24;
+
+    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+}
+  
+
+function selectTask(task) {
+    let selectTask = document.getElementById("selectTask");
+
+    selectTask.innerText = task;
+}
+
 function loadAllTasks() {
     loadChart();
+    loadTasks();
 
     let allTaskBody = document.getElementById("allTaskBody");
     allTaskBody.innerHTML = "";
@@ -227,6 +313,23 @@ function loadAllTasks() {
         `;
     });
     allTaskBody.innerHTML += "</ol>";
+
+    let taskTimeBody = document.getElementById("taskTimeBody");
+
+    taskTimeBody.innerHTML = "";
+    time.forEach(t => {
+        taskTimeBody.innerHTML += `
+        <div class="row d-flex text-center justify-content-center align-items-center">
+            <div class="col">${t.task}</div>
+            <div class="col">${t.duration}</div>
+            <div class="col">
+                <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeTask('${t.task}')"><span class="bi bi-x"></span></button>
+            </div>
+                                            
+        </div>
+        
+        `;
+    })
 }
 
 function getPriorityValue(priority) {
