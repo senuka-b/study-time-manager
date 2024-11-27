@@ -22,24 +22,24 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto fs-3">
                     <li class="nav-item fs-3">
-                      <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                        <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#tasks">Tasks</a>
+                        <a class="nav-link" href="#tasks">Tasks</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#time-alloc">Time</a>
+                        <a class="nav-link" href="#time-alloc">Time</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#calendar">Calendar</a>
+                        <a class="nav-link" href="#calendar">Calendar</a>
                     </li>
-                  </ul>
+                </ul>
             </div>
         </div>
     </nav>
 
     <main>
-        
+
         <div class="container">
             <div class="row py-5 my-5">
                 <div class="col-12 col-md-6  pt-5 mt-5 ps-5 ms-5">
@@ -65,7 +65,7 @@
                 </div>
             </div>
 
-            <div class="row" >
+            <div class="row">
 
                 <div class="col">
 
@@ -74,38 +74,38 @@
                         <div class="row">
                             <div class="col">
 
-                                    <div class="card-body">
-                                    
-                                        <div class="card" >
-                                            <div class="card-body">
+                                <div class="card-body">
+
+                                    <div class="card">
+                                        <div class="card-body">
                                             <h5 class="card-title">All Tasks</h5>
                                             <p class="card-text">These tasks are sorted in the order of priority</p>
-            
-                                                <ol id="allTaskBody">
 
-                                                </ol>
-            
-                                            </div>
+                                            <ol id="allTaskBody">
+
+                                            </ol>
+
                                         </div>
-            
                                     </div>
+
+                                </div>
                             </div>
 
                             <div class="col">
                                 <div class="card-body h-100">
-                                    
-                                    <div class="card h-100" >
+
+                                    <div class="card h-100">
                                         <div class="card-body">
-                                        <h5 class="card-title">Tasks sorted by Time</h5>
-                                        <p class="card-text">The least time-consuimg tasks are at the top!</p>
-        
+                                            <h5 class="card-title">Tasks sorted by Time</h5>
+                                            <p class="card-text">The least time-consuimg tasks are at the top!</p>
+
                                             <ul id="tasksTimeSort">
-                                                
+
                                             </ul>
-        
+
                                         </div>
                                     </div>
-        
+
                                 </div>
                             </div>
 
@@ -115,19 +115,19 @@
                             <div class="col">
 
                                 <div class="card-body">
-                                          
-                                    <div class="card h-100" >
+
+                                    <div class="card h-100">
                                         <div class="card-body">
-                                          <h5 class="card-title">Insights</h5>
-                                          <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
-        
+                                            <h5 class="card-title">Insights</h5>
+                                            <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
+
                                             <canvas id="insightChart">
 
                                             </canvas>
-        
+
                                         </div>
-                                      </div>
-        
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -136,38 +136,40 @@
                             <div class="col">
 
                                 <div class="card-body">
-                                          
-                                    <div class="card h-100" >
-                                        <div class="card-body">
-                                          <h5 class="card-title">Task Calendar</h5>
-                                          <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
-        
-                                          <table class="table table-hover" style="background-color: greenyellow; " id="taskCalendar">
 
-                                          </table>
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Task Calendar</h5>
+                                            <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
+
+                                            <table class="table table-hover" style="background-color: greenyellow; "
+                                                id="taskCalendar">
+
+                                            </table>
 
                                         </div>
-                                      </div>
-        
+                                    </div>
+
                                 </div>
                             </div>
 
                             <div class="col">
 
                                 <div class="card-body">
-                                          
-                                    <div class="card h-100" >
-                                        <div class="card-body">
-                                          <h5 class="card-title">Meeting Calendar</h5>
-                                          <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
-        
-                                          <table class="table table-hover" style="background-color: greenyellow; " id="meetingCalendar">
 
-                                          </table>
-        
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            <h5 class="card-title">Meeting Calendar</h5>
+                                            <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
+
+                                            <table class="table table-hover" style="background-color: greenyellow; "
+                                                id="meetingCalendar">
+
+                                            </table>
+
                                         </div>
-                                      </div>
-        
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -176,243 +178,269 @@
                             <div class="col">
 
                                 <div class="card-body">
-                                          
-                                    <div class="card h-100" >
+
+                                    <div class="card h-100">
                                         <div class="card-body">
-                                          <h5 class="card-title text-center">Time Spent on Subjects</h5>
-                                          <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
-        
-                                          <canvas id="timeChart"></canvas>
+                                            <h5 class="card-title text-center">Time Spent on Subjects</h5>
+                                            <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
+
+                                            <canvas id="timeChart"></canvas>
 
                                         </div>
-                                      </div>
-        
+                                    </div>
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
-            </div>
+                </div>
 
-            <div class="row pt-5 pb-3 my-5" id="tasks">
-                <div class="col">
-                    <div class="header">
-                        <h1>Tasks</h1>
-                        <div class="header-line"></div>
+                <div class="row pt-5 pb-3 my-5" id="tasks">
+                    <div class="col">
+                        <div class="header">
+                            <h1>Tasks</h1>
+                            <div class="header-line"></div>
 
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="row">
-                <div class="col-md-7">
-                    <div class="card-body">
-                                          
-                        <div class="card" >
-                            <div class="card-body">
-                              <h5 class="card-title text-center bg-success bg-opacity-25">Add Tasks</h5>
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="card-body">
 
-                              <div class="row g-4 align-items-center">
-                                
-                                    <div class="col-auto ">
-                                        <input type="text" id="addTaskTextField" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
-                                    </div>
-                                    <div class="col-auto">
-                                        <span id="passwordHelpInline" class="form-text">
-                                            
-                                        </span>
-                                    </div>
-                                    <div class="col-auto ">
-                                        <div class="dropdown">
-                                            <button class="btn btn-info dropdown-toggle" id="addTaskSubject" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                              Select Subject
-                                            </button>
-                                            <ul class="dropdown-menu" id="addTaskSubjectMenu">
-                                                
-                                              <!-- <li><a class="dropdown-item" href="#">Subject 1</a></li>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title text-center bg-success bg-opacity-25">Add Tasks</h5>
+
+                                    <div class="row g-4 align-items-center">
+
+                                        <div class="col-auto ">
+                                            <input type="text" id="addTaskTextField" class="form-control"
+                                                aria-describedby="passwordHelpInline" placeholder="Task Name">
+                                        </div>
+                                        <div class="col-auto">
+                                            <span id="passwordHelpInline" class="form-text">
+
+                                            </span>
+                                        </div>
+                                        <div class="col-auto ">
+                                            <div class="dropdown">
+                                                <button class="btn btn-info dropdown-toggle" id="addTaskSubject"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                    Select Subject
+                                                </button>
+                                                <ul class="dropdown-menu" id="addTaskSubjectMenu">
+
+                                                    <!-- <li><a class="dropdown-item" href="#">Subject 1</a></li>
                                               <li><a class="dropdown-item" href="#">Subject 2</a></li>
                                               <li><a class="dropdown-item" href="#">Subject 3</a></li> -->
-                                            </ul>
-                                          </div>
-                                    </div>
-                                    <div class="col-auto ">
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-auto ">
 
-                                        <div class="dropdown">
-                                                <button class="btn btn-warning dropdown-toggle" id="addTaskPriority" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <div class="dropdown">
+                                                <button class="btn btn-warning dropdown-toggle" id="addTaskPriority"
+                                                    type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Select Priority
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"  onclick="changePriority(1)">Low</a></li>
-                                                    <li><a class="dropdown-item"  onclick="changePriority(2)">Medium</a></li>
-                                                    <li><a class="dropdown-item"  onclick="changePriority(3)">High</a></li>
-                                                    <li><a class="dropdown-item"  onclick="changePriority(4)">Very High</a></li>
+                                                    <li><a class="dropdown-item" onclick="changePriority(1)">Low</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" onclick="changePriority(2)">Medium</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" onclick="changePriority(3)">High</a>
+                                                    </li>
+                                                    <li><a class="dropdown-item" onclick="changePriority(4)">Very
+                                                            High</a></li>
                                                 </ul>
                                             </div>
+                                        </div>
+
+                                        <div class="col-auto pt-3">
+                                            <button type="submit" class="btn btn-success mb-3 pt-2"
+                                                onclick="addTask()"><span class="bi bi-plus"></span></button>
+                                        </div>
+
                                     </div>
 
-                                    <div class="col-auto pt-3">
-                                       <button type="submit" class="btn btn-success mb-3 pt-2" onclick="addTask()"><span class="bi bi-plus"></span></button>
+                                    <div id="addTaskBody">
+
                                     </div>
 
-                              </div>
 
-                              <div id="addTaskBody">
 
-                              </div>
-
-                              
-
+                                </div>
                             </div>
+
                         </div>
-
                     </div>
-                </div>
 
-                <div class="col">
-                    <div class="card-body">
-                                          
-                        <div class="card " >
-                            <div class="card-body">
-                              <h5 class="card-title text-center bg-success bg-opacity-25">Manage Subjects</h5>
-
-                              <div class="row g-3 align-items-center justify-content-center">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">Subject Name</label>
-                                    </div>
-                                    <div class="col-auto">
-                                    <input type="text" id="subjectTextField" class="form-control" aria-describedby="passwordHelpInline">
-                                    </div>
-                                    <div class="col-auto">
-                                    <span id="passwordHelpInline" class="form-text">
-                                        
-                                    </span>
-                                    </div>
-            
-
-                                    <div class="col-auto">
-                                      <button type="submit" class="btn btn-success mb-3 mt-3" onclick="addSubject()"><span class="bi bi-plus"></span></button>
-                                    </div>
-                              </div>
-
-                              <div id="addSubjectBody">
-
-                              </div>
-
-                            </div>
-                          </div>
-
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="row pt-5 pb-3 my-5" id="time-alloc">
-                <div class="col">
-                    <div class="header">
-                        <h1>Time Allocation</h1>
-                        <div class="header-line"></div>
-
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
                     <div class="col">
-                        
                         <div class="card-body">
-                                              
-                            <div class="card" >
+
+                            <div class="card ">
                                 <div class="card-body">
-                                    <h5 class="card-title text-center bg-success bg-opacity-25">Allocate Time to Subjects & Meetings</h5>
-                                    
-                                    <div class="row">
-                                        <div class="col-md-7">
+                                    <h5 class="card-title text-center bg-success bg-opacity-25">Manage Subjects</h5>
 
-                                        <h2 class="lead bg-info text-center fw-semibold bg-opacity-25">Tasks</h2>
-    
-                                        <div class="row g-3 align-items-center justify-content-center">
-                                    
-                                            <div class="col-auto ">
-                                                <input type="time" id="timeStart" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
-                                            </div>
+                                    <div class="row g-3 align-items-center justify-content-center">
+                                        <div class="col-auto">
+                                            <label for="inputPassword6" class="col-form-label">Subject Name</label>
+                                        </div>
+                                        <div class="col-auto">
+                                            <input type="text" id="subjectTextField" class="form-control"
+                                                aria-describedby="passwordHelpInline">
+                                        </div>
+                                        <div class="col-auto">
+                                            <span id="passwordHelpInline" class="form-text">
 
-                                            -
-
-                                            <div class="col-auto ">
-                                                <input type="time" id="timeEnd" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
-                                            </div>
-                                            
-                                            <div class="col-auto ">
-                                                <div class="dropdown">
-                                                    <button class="btn btn-info dropdown-toggle" id="selectTask" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                                    Select Task
-                                                    </button>
-                                                    <ul class="dropdown-menu" id="taskList">
-                                           
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            
-        
-                                            <div class="col-auto pt-3">
-                                                <button type="submit" onclick="addTime()" class="btn btn-success mb-3 pt-2"><span class="bi bi-check"></span></button>
-                                            </div>
-        
+                                            </span>
                                         </div>
 
-                                        <div id="taskTimeBody"></div>
-                                        
-        
+
+                                        <div class="col-auto">
+                                            <button type="submit" class="btn btn-success mb-3 mt-3"
+                                                onclick="addSubject()"><span class="bi bi-plus"></span></button>
+                                        </div>
                                     </div>
-                                    <div class="col">
-                                        <h2 class="lead bg-info text-center fw-semibold bg-opacity-25">Meetings</h2>
 
-
-                                        <div class="row g-3 align-items-center justify-content-center ">
-                                            <div class="col-auto">
-                                                </div>
-                                                <div class="col-auto">
-                                                <input type="text" id="meetingName" placeholder="Meeting Name" class="form-control" aria-describedby="passwordHelpInline">
-                                                </div>
-                                                
-                                                <div class="col-auto">
-                                                    <input type="time" id="meetingTime" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
-
-                                                </div>
-
-                                                <div class="col-auto">
-                                                <button type="submit" class="btn btn-success mb-3 mt-3" onclick="addMeeting()"><span class="bi bi-plus"></span></button>
-                                                </div>
-                                        </div>
-
-                                        <div id="meetingBody">
-
-                                        </div>
-
-                                        
+                                    <div id="addSubjectBody">
 
                                     </div>
-                                </div>
-                                </div>
 
-                                  
+                                </div>
                             </div>
-    
-                        </div>
-                </div>
-            </div>
 
-            
-        </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row pt-5 pb-3 my-5" id="time-alloc">
+                    <div class="col">
+                        <div class="header">
+                            <h1>Time Allocation</h1>
+                            <div class="header-line"></div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <div class="col">
+
+                            <div class="card-body">
+
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h5 class="card-title text-center bg-success bg-opacity-25">Allocate Time to
+                                            Subjects & Meetings</h5>
+
+                                        <div class="row">
+                                            <div class="col-md-7">
+
+                                                <h2 class="lead bg-info text-center fw-semibold bg-opacity-25">Tasks
+                                                </h2>
+
+                                                <div class="row g-3 align-items-center justify-content-center">
+
+                                                    <div class="col-auto ">
+                                                        <input type="time" id="timeStart" class="form-control"
+                                                            aria-describedby="passwordHelpInline"
+                                                            placeholder="Task Name">
+                                                    </div>
+
+                                                    -
+
+                                                    <div class="col-auto ">
+                                                        <input type="time" id="timeEnd" class="form-control"
+                                                            aria-describedby="passwordHelpInline"
+                                                            placeholder="Task Name">
+                                                    </div>
+
+                                                    <div class="col-auto ">
+                                                        <div class="dropdown">
+                                                            <button class="btn btn-info dropdown-toggle" id="selectTask"
+                                                                type="button" data-bs-toggle="dropdown"
+                                                                aria-expanded="false">
+                                                                Select Task
+                                                            </button>
+                                                            <ul class="dropdown-menu" id="taskList">
+
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <div class="col-auto pt-3">
+                                                        <button type="submit" onclick="addTime()"
+                                                            class="btn btn-success mb-3 pt-2"><span
+                                                                class="bi bi-check"></span></button>
+                                                    </div>
+
+                                                </div>
+
+                                                <div id="taskTimeBody"></div>
+
+
+                                            </div>
+                                            <div class="col">
+                                                <h2 class="lead bg-info text-center fw-semibold bg-opacity-25">Meetings
+                                                </h2>
+
+
+                                                <div class="row g-3 align-items-center justify-content-center ">
+                                                    <div class="col-auto">
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <input type="text" id="meetingName" placeholder="Meeting Name"
+                                                            class="form-control" aria-describedby="passwordHelpInline">
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <input type="time" id="meetingTime" class="form-control"
+                                                            aria-describedby="passwordHelpInline"
+                                                            placeholder="Task Name">
+
+                                                    </div>
+
+                                                    <div class="col-auto">
+                                                        <button type="submit" class="btn btn-success mb-3 mt-3"
+                                                            onclick="addMeeting()"><span
+                                                                class="bi bi-plus"></span></button>
+                                                    </div>
+                                                </div>
+
+                                                <div id="meetingBody">
+
+                                                </div>
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-    crossorigin="anonymous"></script>
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
     <script src="script.js"></script>
-    
+
 </body>
 
 </html>

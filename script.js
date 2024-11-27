@@ -1,4 +1,3 @@
-
 let tasks = [];
 let subjects = [];
 let time = [];
@@ -8,169 +7,171 @@ let ch;
 let th;
 
 tasks = [
-    {task: "Task 01", subject: "Maths", priority: "Medium"},
-    {task: "Task 02", subject: "Science", priority: "Very High"},
-    {task: "Task 03", subject: "English", priority: "High"},
-]
+  { task: "Task 01", subject: "Maths", priority: "Medium" },
+  { task: "Task 02", subject: "Science", priority: "Very High" },
+  { task: "Task 03", subject: "English", priority: "High" },
+];
 
 subjects = [
-    {subject: "Science"},
-    {subject: "Maths"},
-    {subject: "English"},
-]
+  { subject: "Science" },
+  { subject: "Maths" },
+  { subject: "English" },
+];
 
 time = [
-    {task: "Task 01", duration: "12:01"},
-    {task: "Task 02", duration: "9:32"},
-    {task: "Task 03", duration: "2:32"},
-]
+  { task: "Task 01", duration: "12:01" },
+  { task: "Task 02", duration: "9:32" },
+  { task: "Task 03", duration: "2:32" },
+];
 
 meetings = [
-    {
-        name: "Industry minds meeting #1",
-        time: "12:32"
-    },
-    {
-        name: "Java support session ",
-        time: "02:32"
-    },
-    {
-        name: "Internet Technologies Project Discussion",
-        time: "16:32"
-    },
-]
-
-
+  {
+    name: "Industry minds meeting #1",
+    time: "12:32",
+  },
+  {
+    name: "Java support session ",
+    time: "02:32",
+  },
+  {
+    name: "Internet Technologies Project Discussion",
+    time: "16:32",
+  },
+];
 
 loadAll();
 
 function loadAll() {
-    loadAllTasks();
-    loadSubjects();
-    loadChart();
-    loadTimeChart();
-    loadMeetingBody();
+  loadAllTasks();
+  loadSubjects();
+  loadChart();
+  loadTimeChart();
+  loadMeetingBody();
 }
 
 function loadTimeChart() {
-    let ctx = document.getElementById("timeChart");
+  let ctx = document.getElementById("timeChart");
 
-    if (th !== undefined) th.destroy();
+  if (th !== undefined) th.destroy();
 
-    th = new Chart(ctx, {
-        type: 'line',
-        
-        data: {
-          labels: subjects.map(sub => sub.subject),
-          datasets: [{
-            label: 'Time spent on subjects',
-            data: time.map(t =>{ 
-                console.log(parseFloat(t.duration.split(":")[0]));
-                
-                return parseFloat(t.duration.split(":")[0])}),
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-          }],
-          
+  th = new Chart(ctx, {
+    type: "line",
+
+    data: {
+      labels: subjects.map((sub) => sub.subject),
+      datasets: [
+        {
+          label: "Time spent on subjects",
+          data: time.map((t) => {
+            console.log(parseFloat(t.duration.split(":")[0]));
+
+            return parseFloat(t.duration.split(":")[0]);
+          }),
+          fill: false,
+          borderColor: "rgb(75, 192, 192)",
+          tension: 0.1,
         },
-       
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
+      ],
+    },
 
-            }
-          }
-        }
-      });
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
+    },
+  });
 }
 
 function loadChart() {
-    let ctx = document.getElementById("insightChart");
+  let ctx = document.getElementById("insightChart");
 
-    if (ch !== undefined) ch.destroy();
+  if (ch !== undefined) ch.destroy();
 
+  ch = new Chart(ctx, {
+    type: "bar",
 
-    ch = new Chart(ctx, {
-        type: 'bar',
-        
-        data: {
-          labels: tasks.map(t => t.task),
-          datasets: [{
-            label: 'Priority and tasks',
-            data: tasks.map(t => getPriorityValue(t.priority)),
-            borderWidth: 1,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(255, 159, 64, 0.2)',
-                'rgba(255, 205, 86, 0.2)',
-                'rgba(75, 192, 192, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(153, 102, 255, 0.2)',
-                'rgba(201, 203, 207, 0.2)'
-              ],
+    data: {
+      labels: tasks.map((t) => t.task),
+      datasets: [
+        {
+          label: "Priority and tasks",
+          data: tasks.map((t) => getPriorityValue(t.priority)),
+          borderWidth: 1,
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+            "rgba(255, 205, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(201, 203, 207, 0.2)",
+          ],
 
-            borderColor: [
-                'rgb(255, 99, 132)',
-                'rgb(255, 159, 64)',
-                'rgb(255, 205, 86)',
-                'rgb(75, 192, 192)',
-                'rgb(54, 162, 235)',
-                'rgb(153, 102, 255)',
-                'rgb(201, 203, 207)'
-              ],
-          }],
-          
+          borderColor: [
+            "rgb(255, 99, 132)",
+            "rgb(255, 159, 64)",
+            "rgb(255, 205, 86)",
+            "rgb(75, 192, 192)",
+            "rgb(54, 162, 235)",
+            "rgb(153, 102, 255)",
+            "rgb(201, 203, 207)",
+          ],
         },
-       
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 5,
+      ],
+    },
 
-              ticks: {
-                // Include a dollar sign in the ticks
-                callback: function(value, index, ticks) {
-                    console.log("value", value);
-                    
-                    if (value === 1 || value === 2 || value === 3 || value === 4 || value === 5) {
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
+          max: 5,
 
-                        return getPriorityText(parseInt(value));
-                    }
+          ticks: {
+            // Include a dollar sign in the ticks
+            callback: function (value, index, ticks) {
+              console.log("value", value);
 
-                    return "";
-                }
-            }
-            }
-          }
-        }
-      });
+              if (
+                value === 1 ||
+                value === 2 ||
+                value === 3 ||
+                value === 4 ||
+                value === 5
+              ) {
+                return getPriorityText(parseInt(value));
+              }
+
+              return "";
+            },
+          },
+        },
+      },
+    },
+  });
 }
 
 function addTask() {
-    let textField = document.getElementById('addTaskTextField');
-    let subject = document.getElementById('addTaskSubject');
-    let priority = document.getElementById("addTaskPriority");
+  let textField = document.getElementById("addTaskTextField");
+  let subject = document.getElementById("addTaskSubject");
+  let priority = document.getElementById("addTaskPriority");
 
-    let addTaskBody = document.getElementById('addTaskBody');
+  let addTaskBody = document.getElementById("addTaskBody");
 
-    tasks.push(
-        {
-            "task": textField.value,
-            "subject": subject.innerText,
-            "priority": priority.innerText
-        }
-    );
+  tasks.push({
+    task: textField.value,
+    subject: subject.innerText,
+    priority: priority.innerText,
+  });
 
-    textField.innerText = "";
-    subject.innerText = "Select Subject";
-    priority.innerText = "Select Priority";
+  textField.innerText = "";
+  subject.innerText = "Select Subject";
+  priority.innerText = "Select Priority";
 
-    let taskHTMl = "";
-    tasks.forEach(task => {
-        taskHTMl += `
+  let taskHTMl = "";
+  tasks.forEach((task) => {
+    taskHTMl += `
             <div class="row">
                 <div class="col">${task.task}</div>
                 <div class="col">${task.subject}</div>
@@ -180,26 +181,25 @@ function addTask() {
                 </div>
             </div>    
         
-    `
-    })
+    `;
+  });
 
-    addTaskBody.innerHTML = taskHTMl;
+  addTaskBody.innerHTML = taskHTMl;
 
-    console.log(tasks);
-    loadAllTasks();
-    
-
+  console.log(tasks);
+  loadAllTasks();
+  loadAll();
 }
 
 function removeTask(task) {
-    console.log(task);
-    
-    tasks = tasks.filter((t) => t.task != task);
-    time = time.filter((t) => t.task != task);
-    
-    let taskHTMl = "";
-    tasks.forEach(task => {
-        taskHTMl += `
+  console.log("TASK", task);
+
+  tasks = tasks.filter((t) => t.task != task);
+  time = time.filter((t) => t.task != task);
+
+  let taskHTMl = "";
+  tasks.forEach((task) => {
+    taskHTMl += `
             <div class="row">
                 <div class="col">${task.task}</div>
                 <div class="col">${task.subject}</div>
@@ -209,114 +209,109 @@ function removeTask(task) {
                 </div>
             </div>    
         
-    `
-    })
+    `;
+  });
 
-    document.getElementById("addTaskBody").innerHTML = taskHTMl;
-    loadAllTasks();
-    loadChart();
+  document.getElementById("addTaskBody").innerHTML = taskHTMl;
+  loadAllTasks();
+  loadChart();
 }
 
 function removeSubject(subject) {
-    subjects = subjects.filter((s) => s.subject != subject);
+  subjects = subjects.filter((s) => s.subject != subject);
 
-    let subjectHTML = "";
-    subjects.forEach(subject => {
-        subjectHTML += `
+  let subjectHTML = "";
+  subjects.forEach((subject) => {
+    subjectHTML += `
             <div class="row ps-5 ms-5">
                     <div class="col">${subject.subject}</div>
                     <div class="col">
                         <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeSubject('${subject.subject}')"><span class="bi bi-x"></span></button>
                     </div>
             </div>
-        `
-    });
-    document.getElementById("addSubjectBody").innerHTML = subjectHTML;
-    loadSubjects();
-    loadTimeChart();
-
+        `;
+  });
+  document.getElementById("addSubjectBody").innerHTML = subjectHTML;
+  loadSubjects();
+  loadTimeChart();
 }
 
 function addSubject() {
-    let textField = document.getElementById('subjectTextField');
-    let addSubjectBody = document.getElementById("addSubjectBody");
+  let textField = document.getElementById("subjectTextField");
+  let addSubjectBody = document.getElementById("addSubjectBody");
 
-    subjects.push(
-        {
-            "subject": textField.value
-        }
-    );
+  subjects.push({
+    subject: textField.value,
+  });
 
-    textField.value = "";
+  textField.value = "";
 
-    let subjectHTML = "";
-    subjects.forEach(subject => {
-        subjectHTML += `
+  let subjectHTML = "";
+  subjects.forEach((subject) => {
+    subjectHTML += `
             <div class="row ps-5 ms-5">
                     <div class="col">${subject.subject}</div>
                     <div class="col">
                         <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeSubject('${subject.subject}')"><span class="bi bi-x"></span></button>
                     </div>
             </div>
-        `
-    });
-    addSubjectBody.innerHTML = subjectHTML;
-    loadSubjects();
-
+        `;
+  });
+  addSubjectBody.innerHTML = subjectHTML;
+  loadSubjects();
 }
 
 function changePriority(priority) {
-    let priorityDropDown = document.getElementById('addTaskPriority');
-    priorityDropDown.innerHTML = getPriorityText(priority);
+  let priorityDropDown = document.getElementById("addTaskPriority");
+  priorityDropDown.innerHTML = getPriorityText(priority);
 }
 
 function changeSubject(subject) {
-    console.log(subject);
-    
-    let subjectButton = document.getElementById('addTaskSubject');
-    subjectButton.innerText = subject;
+  console.log(subject);
 
+  let subjectButton = document.getElementById("addTaskSubject");
+  subjectButton.innerText = subject;
 }
 
 function loadSubjects() {
-    let subjectMenu = document.getElementById("addTaskSubjectMenu");
-    let addSubjectBody = document.getElementById("addSubjectBody");
-    
-    subjectMenu.innerHTML = "";
-    subjects.forEach(subject => {
-        subjectMenu.innerHTML += `
+  let subjectMenu = document.getElementById("addTaskSubjectMenu");
+  let addSubjectBody = document.getElementById("addSubjectBody");
+
+  subjectMenu.innerHTML = "";
+  subjects.forEach((subject) => {
+    subjectMenu.innerHTML += `
             <li><a class="dropdown-item" onclick="changeSubject('${subject.subject}')" >${subject.subject}</a></li>
         `;
-    })
+  });
 
-    let subjectHTML = "";
-    subjects.forEach(subject => {
-        subjectHTML += `
+  let subjectHTML = "";
+  subjects.forEach((subject) => {
+    subjectHTML += `
             <div class="row ps-5 ms-5">
                     <div class="col">${subject.subject}</div>
                     <div class="col">
                         <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeSubject('${subject.subject}')"><span class="bi bi-x"></span></button>
                     </div>
             </div>
-        `
-    });
-    addSubjectBody.innerHTML = subjectHTML;
+        `;
+  });
+  addSubjectBody.innerHTML = subjectHTML;
 }
 
 function loadTasks() {
-    let taskList = document.getElementById("taskList");
-    let addTaskBody = document.getElementById("addTaskBody");
+  let taskList = document.getElementById("taskList");
+  let addTaskBody = document.getElementById("addTaskBody");
 
-    taskList.innerHTML = "";
-    tasks.forEach(task => {
-        taskList.innerHTML += `<li><a class="dropdown-item" onclick=selectTask('${task.task}')>${task.task}</a></li>` 
-    })
+  taskList.innerHTML = "";
+  tasks.forEach((task) => {
+    taskList.innerHTML += `<li><a class="dropdown-item" onclick="selectTask('${task.task}')">${task.task}</a></li>`;
+  });
 
-    let taskTimeBody = document.getElementById("taskTimeBody");
+  let taskTimeBody = document.getElementById("taskTimeBody");
 
-    taskTimeBody.innerHTML = "";
-    time.forEach(t => {
-        taskTimeBody.innerHTML += `
+  taskTimeBody.innerHTML = "";
+  time.forEach((t) => {
+    taskTimeBody.innerHTML += `
             <div class="col">${t.task}</div>
             <div class="col">${t.duration}</div>
             <div class="col">
@@ -324,11 +319,11 @@ function loadTasks() {
             </div>
         
         `;
-    })
+  });
 
-    let taskHTMl = "";
-    tasks.forEach(task => {
-        taskHTMl += `
+  let taskHTMl = "";
+  tasks.forEach((task) => {
+    taskHTMl += `
             <div class="row">
                 <div class="col">${task.task}</div>
                 <div class="col">${task.subject}</div>
@@ -338,34 +333,31 @@ function loadTasks() {
                 </div>
             </div>    
         
-    `
-    })
+    `;
+  });
 
-    addTaskBody.innerHTML = taskHTMl;
-
+  addTaskBody.innerHTML = taskHTMl;
 }
 
 function addTime() {
-    let timeStart = document.getElementById('timeStart');
-    let timeEnd = document.getElementById('timeEnd');
+  let timeStart = document.getElementById("timeStart");
+  let timeEnd = document.getElementById("timeEnd");
 
-    let task = document.getElementById("selectTask");
-    let taskTimeBody = document.getElementById("taskTimeBody");
+  let task = document.getElementById("selectTask");
+  let taskTimeBody = document.getElementById("taskTimeBody");
 
-    if (time.find(t => t.task == task.innerText)) {
-        return alert("Sorry! You have already allocated a time for this task.")
-    }
+  if (time.find((t) => t.task == task.innerText)) {
+    return alert("Sorry! You have already allocated a time for this task.");
+  }
 
-    time.push(
-        {
-            "task": task.innerText,
-            "duration": diff(timeStart.value, timeEnd.value)
-        }
-    );
+  time.push({
+    task: task.innerText,
+    duration: diff(timeStart.value, timeEnd.value),
+  });
 
-    taskTimeBody.innerHTML = "";
-    time.forEach(t => {
-        taskTimeBody.innerHTML += `
+  taskTimeBody.innerHTML = "";
+  time.forEach((t) => {
+    taskTimeBody.innerHTML += `
         <div class="row d-flex text-center justify-content-center align-items-center">
             <div class="col">${t.task}</div>
             <div class="col">${t.duration}</div>
@@ -376,41 +368,39 @@ function addTime() {
         </div>
         
         `;
-    })
+  });
 
-    loadTimeChart();
-
-    
+  loadTimeChart();
 }
 
 function diff(start, end) {
-    start = start.split(":");
-    end = end.split(":");
-    var startDate = new Date(0, 0, 0, start[0], start[1], 0);
-    var endDate = new Date(0, 0, 0, end[0], end[1], 0);
-    var diff = endDate.getTime() - startDate.getTime();
-    var hours = Math.floor(diff / 1000 / 60 / 60);
-    diff -= hours * 1000 * 60 * 60;
-    var minutes = Math.floor(diff / 1000 / 60);
+  start = start.split(":");
+  end = end.split(":");
+  var startDate = new Date(0, 0, 0, start[0], start[1], 0);
+  var endDate = new Date(0, 0, 0, end[0], end[1], 0);
+  var diff = endDate.getTime() - startDate.getTime();
+  var hours = Math.floor(diff / 1000 / 60 / 60);
+  diff -= hours * 1000 * 60 * 60;
+  var minutes = Math.floor(diff / 1000 / 60);
 
-    // If using time pickers with 24 hours format, add the below line get exact hours
-    if (hours < 0)
-       hours = hours + 24;
+  // If using time pickers with 24 hours format, add the below line get exact hours
+  if (hours < 0) hours = hours + 24;
 
-    return (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes;
+  return (
+    (hours <= 9 ? "0" : "") + hours + ":" + (minutes <= 9 ? "0" : "") + minutes
+  );
 }
-  
 
 function selectTask(task) {
-    let selectTask = document.getElementById("selectTask");
+  let selectTask = document.getElementById("selectTask");
 
-    selectTask.innerText = task;
+  selectTask.innerText = task;
 }
 
 function loadTaskCalendar() {
-    let calendar = document.getElementById("taskCalendar");
+  let calendar = document.getElementById("taskCalendar");
 
-    calendar.innerHTML = `
+  calendar.innerHTML = `
         <th>
             <td><b>Duration</b></td>
             <td><b>Task</b></td>
@@ -418,64 +408,62 @@ function loadTaskCalendar() {
         </th>
     
     `;
-    tasks.forEach((t, index) => {
-        calendar.innerHTML += `
+  tasks.forEach((t, index) => {
+    calendar.innerHTML += `
             <tr>
                 <td></td>
-                <td>${time[index].duration}</td>
+                <td>${
+                  time[index] === undefined ? "" : time[index].duration
+                }</td>
                 <td>${t.task}</td>
                 <td>${t.priority}</td>
             </tr>
-        `
-    })
-
+        `;
+  });
 }
 
 function loadMeetingCalendar() {
-    let calendar = document.getElementById("meetingCalendar");
+  let calendar = document.getElementById("meetingCalendar");
 
-    calendar.innerHTML = `
+  calendar.innerHTML = `
         <th>
             <td><b>Name</b></td>
             <td><b>Time</b></td>
         </th>
     
     `;
-    meetings.forEach((m) => {
-        calendar.innerHTML += `
+  meetings.forEach((m) => {
+    calendar.innerHTML += `
             <tr>
                 <td></td>
                 <td>${m.name}</td>
                 <td>${m.time}</td>
                 
             </tr>
-        `
-    })
+        `;
+  });
 }
 
 function addMeeting() {
-    let name = document.getElementById("meetingName");
-    let time = document.getElementById("meetingTime");
+  let name = document.getElementById("meetingName");
+  let time = document.getElementById("meetingTime");
 
-    meetings.push(
-        {
-            name: name.value,
-            time: time.value
-        }
-    );
+  meetings.push({
+    name: name.value,
+    time: time.value,
+  });
 
-    loadMeetingBody();
+  loadMeetingBody();
 
-    loadMeetingCalendar();
+  loadMeetingCalendar();
 }
 
 function loadMeetingBody() {
+  let meetingBody = document.getElementById("meetingBody");
 
-    let meetingBody = document.getElementById("meetingBody");
-
-    meetingBody.innerHTML = "";
-    meetings.forEach(m => {
-        meetingBody.innerHTML += `
+  meetingBody.innerHTML = "";
+  meetings.forEach((m) => {
+    meetingBody.innerHTML += `
             <div class="row text-center text-wrap fs-6">
                 <div class="col">${m.name}</div>
                 <div class="col">${m.time}</div>
@@ -485,67 +473,68 @@ function loadMeetingBody() {
                 </div>
             </div>
         `;
-    });
+  });
 }
 
 function removeMeeting(meeting) {
-    meetings = meetings.filter(m => m.name !== meeting);
+  meetings = meetings.filter((m) => m.name !== meeting);
 
-    loadMeetingBody();
+  loadMeetingBody();
 
-    loadMeetingCalendar();
-    
+  loadMeetingCalendar();
 }
 
 function loadAllTasks() {
-    loadChart();
-    loadTasks();
-    loadTimeChart();
-    loadTaskCalendar();
-    loadMeetingCalendar();
-    
+  loadChart();
+  loadTasks();
+  loadTimeChart();
+  loadTaskCalendar();
+  loadMeetingCalendar();
 
-    let allTaskBody = document.getElementById("allTaskBody");
-    let timeSortedBody = document.getElementById("tasksTimeSort");
+  let allTaskBody = document.getElementById("allTaskBody");
+  let timeSortedBody = document.getElementById("tasksTimeSort");
 
-    allTaskBody.innerHTML = "";
-    timeSortedBody.innerHTML = "";
+  allTaskBody.innerHTML = "";
+  timeSortedBody.innerHTML = "";
 
-    let sorted = tasks.sort((a, b) => getPriorityValue(b.priority) - getPriorityValue(a.priority));
-    
-    console.log("SORTED", sorted);
-    
+  let sorted = tasks.sort(
+    (a, b) => getPriorityValue(b.priority) - getPriorityValue(a.priority)
+  );
 
-    allTaskBody.innerHTML += ""
-    sorted.forEach(task => {
-        allTaskBody.innerHTML += `
+  console.log("SORTED", sorted);
+
+  allTaskBody.innerHTML += "";
+  sorted.forEach((task) => {
+    allTaskBody.innerHTML += `
             
             <li>${task.task} - (${task.priority}) <span class="btn ms-3 btn-success" onclick="removeTask('${task.task}')">Mark as Done<span class="bi bi-check"></span></span></li>    
             
         `;
-    });
+  });
 
-    let time_sorted = time.sort((a, b) => {
-        let a_value = parseFloat(a.duration.split(":")[0] * 60 + parseFloat(a.duration.split(":")[1]));
-        let b_value = parseFloat(b.duration.split(":")[0] * 60 + parseFloat(b.duration.split(":")[1]));
+  let time_sorted = time.sort((a, b) => {
+    let a_value = parseFloat(
+      a.duration.split(":")[0] * 60 + parseFloat(a.duration.split(":")[1])
+    );
+    let b_value = parseFloat(
+      b.duration.split(":")[0] * 60 + parseFloat(b.duration.split(":")[1])
+    );
 
-        return a_value - b_value;
-    });
+    return a_value - b_value;
+  });
 
-    time_sorted.forEach(t => {
-        timeSortedBody.innerHTML += `
+  time_sorted.forEach((t) => {
+    timeSortedBody.innerHTML += `
             <li>${t.task} - (${t.duration}) <span class="btn ms-3 btn-success" onclick="removeTask('${t.task}')">Mark as Done<span class="bi bi-check"></span></span></li>    
 
         `;
-    })
+  });
 
+  let taskTimeBody = document.getElementById("taskTimeBody");
 
-
-    let taskTimeBody = document.getElementById("taskTimeBody");
-
-    taskTimeBody.innerHTML = "";
-    time.forEach(t => {
-        taskTimeBody.innerHTML += `
+  taskTimeBody.innerHTML = "";
+  time.forEach((t) => {
+    taskTimeBody.innerHTML += `
         <div class="row d-flex text-center justify-content-center align-items-center">
             <div class="col">${t.task}</div>
             <div class="col">${t.duration}</div>
@@ -556,35 +545,35 @@ function loadAllTasks() {
         </div>
         
         `;
-    })
+  });
 }
 
 function getPriorityValue(priority) {
-    switch (priority.toLowerCase()) {
-        case "low":
-            return 1;
-        case "medium":
-            return 2;
-        case "high":
-            return 3;
-        case "very high":
-            return 4;
-        default:
-            return -1;
-    }
+  switch (priority.toLowerCase()) {
+    case "low":
+      return 1;
+    case "medium":
+      return 2;
+    case "high":
+      return 3;
+    case "very high":
+      return 4;
+    default:
+      return -1;
+  }
 }
 
 function getPriorityText(index) {
-    switch (index) {
-        case 1:
-            return "Low";
-        case 2:
-            return "Medium";
-        case 3:
-            return "High";
-        case 4:
-            return "Very High";
-        default:
-            break;
-    }
+  switch (index) {
+    case 1:
+      return "Low";
+    case 2:
+      return "Medium";
+    case 3:
+      return "High";
+    case 4:
+      return "Very High";
+    default:
+      break;
+  }
 }
