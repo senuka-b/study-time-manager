@@ -82,7 +82,7 @@
                                             <p class="card-text">These tasks are sorted in the order of priority</p>
             
                                                 <div id="allTaskBody">
-                                                    
+
                                                 </div>
             
                                             </div>
@@ -122,11 +122,9 @@
                                           <h5 class="card-title">Insights</h5>
                                           <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
         
-                                            <div class="h-100">
-    
-                                            </div>
-    
-                                            insert chart here
+                                            <canvas id="insightChart">
+
+                                            </canvas>
         
                                           <a href="#" class="btn btn-primary">Refresh</a>
                                         </div>
@@ -257,10 +255,10 @@
                                                     Select Priority
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                    <li><a class="dropdown-item"  onclick="changePriority(0)">Low</a></li>
-                                                    <li><a class="dropdown-item"  onclick="changePriority(1)">Medium</a></li>
-                                                    <li><a class="dropdown-item"  onclick="changePriority(2)">High</a></li>
-                                                    <li><a class="dropdown-item"  onclick="changePriority(3)">Very High</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(1)">Low</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(2)">Medium</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(3)">High</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(4)">Very High</a></li>
                                                 </ul>
                                             </div>
                                     </div>
@@ -415,11 +413,12 @@
         </div>
     </main>
 
-
-    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-        crossorigin="anonymous"></script>
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    
 </body>
 
 </html>

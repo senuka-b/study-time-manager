@@ -3,6 +3,73 @@ let tasks = [];
 let subjects = [];
 let time = [];
 
+let ch;
+
+
+function loadChart() {
+    let ctx = document.getElementById("insightChart");
+
+    if (ch !== undefined) ch.destroy();
+
+
+    ch = new Chart(ctx, {
+        type: 'bar',
+        
+        data: {
+          labels: tasks.map(t => t.task),
+          datasets: [{
+            label: 'Priority and tasks',
+            data: tasks.map(t => getPriorityValue(t.priority)),
+            borderWidth: 1,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(255, 205, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(201, 203, 207, 0.2)'
+              ],
+
+            borderColor: [
+                'rgb(255, 99, 132)',
+                'rgb(255, 159, 64)',
+                'rgb(255, 205, 86)',
+                'rgb(75, 192, 192)',
+                'rgb(54, 162, 235)',
+                'rgb(153, 102, 255)',
+                'rgb(201, 203, 207)'
+              ],
+          }],
+          
+        },
+       
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 5,
+
+              ticks: {
+                // Include a dollar sign in the ticks
+                callback: function(value, index, ticks) {
+                    console.log("value", value);
+                    
+                    if (value === 1 || value === 2 || value === 3 || value === 4 || value === 5) {
+
+                        return getPriorityText(parseInt(value));
+                    }
+
+                    return "";
+                }
+            }
+            }
+          }
+        }
+      });
+    ch.ref
+}
+
 function addTask() {
     let textField = document.getElementById('addTaskTextField');
     let subject = document.getElementById('addTaskSubject');
@@ -141,6 +208,7 @@ function loadSubjects() {
 }
 
 function loadAllTasks() {
+    loadChart();
 
     let allTaskBody = document.getElementById("allTaskBody");
     allTaskBody.innerHTML = "";
@@ -164,13 +232,13 @@ function loadAllTasks() {
 function getPriorityValue(priority) {
     switch (priority.toLowerCase()) {
         case "low":
-            return 0;
-        case "medium":
             return 1;
-        case "high":
+        case "medium":
             return 2;
-        case "very high":
+        case "high":
             return 3;
+        case "very high":
+            return 4;
         default:
             return -1;
     }
@@ -178,13 +246,13 @@ function getPriorityValue(priority) {
 
 function getPriorityText(index) {
     switch (index) {
-        case 0:
-            return "Low";
         case 1:
-            return "Medium";
+            return "Low";
         case 2:
-            return "High";
+            return "Medium";
         case 3:
+            return "High";
+        case 4:
             return "Very High";
         default:
             break;
