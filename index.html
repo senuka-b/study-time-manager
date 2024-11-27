@@ -81,12 +81,9 @@
                                             <h5 class="card-title">All Tasks</h5>
                                             <p class="card-text">These tasks are sorted in the order of priority</p>
             
-                                                <ul>
-                                                    <li>Task A</li>
-                                                    <li>Task B</li>
-                                                    <li>Task C</li>
-                                                    <li>Task D</li>
-                                                </ul>
+                                                <div id="allTaskBody">
+                                                    
+                                                </div>
             
                                             </div>
                                         </div>
@@ -233,7 +230,7 @@
                               <div class="row g-4 align-items-center">
                                 
                                     <div class="col-auto ">
-                                        <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
+                                        <input type="text" id="addTaskTextField" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
                                     </div>
                                     <div class="col-auto">
                                         <span id="passwordHelpInline" class="form-text">
@@ -242,36 +239,43 @@
                                     </div>
                                     <div class="col-auto ">
                                         <div class="dropdown">
-                                            <button class="btn btn-info dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <button class="btn btn-info dropdown-toggle" id="addTaskSubject" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                               Select Subject
                                             </button>
-                                            <ul class="dropdown-menu">
-                                              <li><a class="dropdown-item" href="#">Subject 1</a></li>
+                                            <ul class="dropdown-menu" id="addTaskSubjectMenu">
+                                                
+                                              <!-- <li><a class="dropdown-item" href="#">Subject 1</a></li>
                                               <li><a class="dropdown-item" href="#">Subject 2</a></li>
-                                              <li><a class="dropdown-item" href="#">Subject 3</a></li>
+                                              <li><a class="dropdown-item" href="#">Subject 3</a></li> -->
                                             </ul>
                                           </div>
                                     </div>
                                     <div class="col-auto ">
 
                                         <div class="dropdown">
-                                                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                <button class="btn btn-warning dropdown-toggle" id="addTaskPriority" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                                                     Select Priority
                                                 </button>
                                                 <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">Low</a></li>
-                                                <li><a class="dropdown-item" href="#">Medium</a></li>
-                                                <li><a class="dropdown-item" href="#">High</a></li>
-                                                <li><a class="dropdown-item" href="#">Very High</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(0)">Low</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(1)">Medium</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(2)">High</a></li>
+                                                    <li><a class="dropdown-item"  onclick="changePriority(3)">Very High</a></li>
                                                 </ul>
                                             </div>
                                     </div>
 
                                     <div class="col-auto pt-3">
-                                       <button type="submit" class="btn btn-success mb-3 pt-2"><span class="bi bi-plus"></span></button>
+                                       <button type="submit" class="btn btn-success mb-3 pt-2" onclick="addTask()"><span class="bi bi-plus"></span></button>
                                     </div>
 
                               </div>
+
+                              <div id="addTaskBody">
+
+                              </div>
+
+                              
 
                             </div>
                         </div>
@@ -291,7 +295,7 @@
                                     <label for="inputPassword6" class="col-form-label">Subject Name</label>
                                     </div>
                                     <div class="col-auto">
-                                    <input type="text" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline">
+                                    <input type="text" id="subjectTextField" class="form-control" aria-describedby="passwordHelpInline">
                                     </div>
                                     <div class="col-auto">
                                     <span id="passwordHelpInline" class="form-text">
@@ -301,8 +305,12 @@
             
 
                                     <div class="col-auto">
-                                      <button type="submit" class="btn btn-success mb-3 mt-3"><span class="bi bi-plus"></span></button>
+                                      <button type="submit" class="btn btn-success mb-3 mt-3" onclick="addSubject()"><span class="bi bi-plus"></span></button>
                                     </div>
+                              </div>
+
+                              <div id="addSubjectBody">
+
                               </div>
 
                             </div>
