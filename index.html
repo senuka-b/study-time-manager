@@ -161,9 +161,10 @@
                                           <h5 class="card-title">Meeting Calendar</h5>
                                           <!-- <p class="card-text">These tasks are sorted in the order of priority</p> -->
         
+                                          <table class="table table-hover" style="background-color: greenyellow; " id="meetingCalendar">
 
+                                          </table>
         
-                                          <a href="#" class="btn btn-primary">Refresh</a>
                                         </div>
                                       </div>
         
@@ -368,22 +369,28 @@
                                         <h2 class="lead bg-info text-center fw-semibold bg-opacity-25">Meetings</h2>
 
 
-                                        <div class="row g-3 align-items-center justify-content-center">
+                                        <div class="row g-3 align-items-center justify-content-center ">
                                             <div class="col-auto">
                                                 </div>
                                                 <div class="col-auto">
-                                                <input type="text" id="inputPassword6" placeholder="Meeting Name" class="form-control" aria-describedby="passwordHelpInline">
+                                                <input type="text" id="meetingName" placeholder="Meeting Name" class="form-control" aria-describedby="passwordHelpInline">
                                                 </div>
                                                 
                                                 <div class="col-auto">
-                                                    <input type="time" id="inputPassword6" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
+                                                    <input type="time" id="meetingTime" class="form-control" aria-describedby="passwordHelpInline" placeholder="Task Name">
 
                                                 </div>
 
                                                 <div class="col-auto">
-                                                <button type="submit" class="btn btn-success mb-3 mt-3"><span class="bi bi-plus"></span></button>
+                                                <button type="submit" class="btn btn-success mb-3 mt-3" onclick="addMeeting()"><span class="bi bi-plus"></span></button>
                                                 </div>
                                         </div>
+
+                                        <div id="meetingBody">
+
+                                        </div>
+
+                                        
 
                                     </div>
                                 </div>

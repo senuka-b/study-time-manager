@@ -2,6 +2,7 @@
 let tasks = [];
 let subjects = [];
 let time = [];
+let meetings = [];
 
 let ch;
 let th;
@@ -24,6 +25,21 @@ time = [
     {task: "Task 03", duration: "2:32"},
 ]
 
+meetings = [
+    {
+        name: "Industry minds meeting #1",
+        time: "12:32"
+    },
+    {
+        name: "Java support session ",
+        time: "02:32"
+    },
+    {
+        name: "Internet Technologies Project Discussion",
+        time: "16:32"
+    },
+]
+
 
 
 loadAll();
@@ -33,6 +49,7 @@ function loadAll() {
     loadSubjects();
     loadChart();
     loadTimeChart();
+    loadMeetingBody();
 }
 
 function loadTimeChart() {
@@ -395,9 +412,9 @@ function loadTaskCalendar() {
 
     calendar.innerHTML = `
         <th>
-            <td>Duration</td>
-            <td>Task</td>
-            <td>Priority</td>
+            <td><b>Duration</b></td>
+            <td><b>Task</b></td>
+            <td><b>Priority</b></td>
         </th>
     
     `;
@@ -414,11 +431,78 @@ function loadTaskCalendar() {
 
 }
 
+function loadMeetingCalendar() {
+    let calendar = document.getElementById("meetingCalendar");
+
+    calendar.innerHTML = `
+        <th>
+            <td><b>Name</b></td>
+            <td><b>Time</b></td>
+        </th>
+    
+    `;
+    meetings.forEach((m) => {
+        calendar.innerHTML += `
+            <tr>
+                <td></td>
+                <td>${m.name}</td>
+                <td>${m.time}</td>
+                
+            </tr>
+        `
+    })
+}
+
+function addMeeting() {
+    let name = document.getElementById("meetingName");
+    let time = document.getElementById("meetingTime");
+
+    meetings.push(
+        {
+            name: name.value,
+            time: time.value
+        }
+    );
+
+    loadMeetingBody();
+
+    loadMeetingCalendar();
+}
+
+function loadMeetingBody() {
+
+    let meetingBody = document.getElementById("meetingBody");
+
+    meetingBody.innerHTML = "";
+    meetings.forEach(m => {
+        meetingBody.innerHTML += `
+            <div class="row text-center text-wrap fs-6">
+                <div class="col">${m.name}</div>
+                <div class="col">${m.time}</div>
+                <div class="col">
+                    <button type="submit" class="btn btn-danger mb-3 mt-3" onclick="removeMeeting('${m.name}')"><span class="bi bi-x"></span></button>
+                
+                </div>
+            </div>
+        `;
+    });
+}
+
+function removeMeeting(meeting) {
+    meetings = meetings.filter(m => m.name !== meeting);
+
+    loadMeetingBody();
+
+    loadMeetingCalendar();
+    
+}
+
 function loadAllTasks() {
     loadChart();
     loadTasks();
     loadTimeChart();
     loadTaskCalendar();
+    loadMeetingCalendar();
     
 
     let allTaskBody = document.getElementById("allTaskBody");
